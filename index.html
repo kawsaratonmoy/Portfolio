@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kawsar Portfolio - Home</title>
+  <title>Kawsar - Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Floating Header -->
 <header>
   <div class="logo">Kawsar</div>
   <nav>
@@ -21,27 +20,55 @@
 </header>
 
 <main class="section">
-  <!-- Left Column (profile) -->
   <div class="left-col">
     <div class="profile">
       <div class="decor-box"></div>
-      <img src="https://erp.adgully.com/artical_image/48a66db822933ed693d20efd1fef9e02.jpeg" alt="Kawsar" class="profile-img"> <!-- REPLACE WITH YOUR PHOTO -->
+      <img src="https://erp.adgully.com/artical_image/48a66db822933ed693d20efd1fef9e02.jpeg" alt="Kawsar" class="profile-img">
       <h1>Kawsar</h1>
-      <p>Digital Marketer & Landing Page Designer from Savar, Dhaka</p>
-      <div class="skills">
-        <span class="skill-tag">Digital Marketer</span>
-        <span class="skill-tag">Landing Page Designer</span>
-        <span class="skill-tag">Vibe Coder</span>
-        <span class="skill-tag">Freelancer</span>
-        <span class="skill-tag">SEO</span>
-        <span class="skill-tag">Google Ads</span>
+      <p>Digital Marketer & Landing Page Designer<br>Savar, Dhaka</p>
+
+      <div class="skills-progress">
+        <h3 style="text-align:center; margin-bottom:20px; font-size:22px; color:#7cff00;">My Skills</h3>
+
+        <div class="skill-item">
+          <div class="skill-name">Digital Marketing <span class="percent">92%</span></div>
+          <div class="progress-container">
+            <div class="progress-bar" data-percent="92"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">Landing Page Design <span class="percent">88%</span></div>
+          <div class="progress-container">
+            <div class="progress-bar" data-percent="88"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">SEO & Analytics <span class="percent">85%</span></div>
+          <div class="progress-container">
+            <div class="progress-bar" data-percent="85"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">Google Ads <span class="percent">90%</span></div>
+          <div class="progress-container">
+            <div class="progress-bar" data-percent="90"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">UI Basics / Vibe Coding <span class="percent">78%</span></div>
+          <div class="progress-container">
+            <div class="progress-bar" data-percent="78"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Right Column -->
   <div class="right-col">
-    <div class="decor-box"></div>
     <div class="category-label">Hey there</div>
     <h2>Welcome</h2>
 
@@ -95,21 +122,59 @@
 <script>
 // Typing animation
 const phrases = ["Digital marketer", "Landing page designer", "Vibe coder", "Freelancer"];
-let i = 0, j = 0, isDeleting = false;
-const typingEl = document.querySelector('.typing span');
+let i = 0, isDeleting = false, charIndex = 0;
+const typingSpan = document.querySelector('.typing span');
 
 function type() {
-  let current = phrases[i];
+  const current = phrases[i];
   if (isDeleting) {
-    typingEl.textContent = current.substring(0, j--);
-    if (j < 0) { isDeleting = false; i = (i + 1) % phrases.length; j = 0; }
+    typingSpan.textContent = current.substring(0, charIndex--);
+    if (charIndex < 0) {
+      isDeleting = false;
+      i = (i + 1) % phrases.length;
+    }
   } else {
-    typingEl.textContent = current.substring(0, j++);
-    if (j > current.length) { isDeleting = true; setTimeout(type, 1500); return; }
+    typingSpan.textContent = current.substring(0, charIndex++);
+    if (charIndex > current.length) {
+      isDeleting = true;
+      setTimeout(type, 1500);
+      return;
+    }
   }
   setTimeout(type, isDeleting ? 80 : 120);
 }
 type();
+
+// Progress bar animation
+document.addEventListener('DOMContentLoaded', () => {
+  const bars = document.querySelectorAll('.progress-bar');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        bars.forEach(bar => {
+          const percent = bar.dataset.percent;
+          bar.style.width = percent + '%';
+
+          const percentEl = bar.closest('.skill-item').querySelector('.percent');
+          let count = 0;
+          const interval = setInterval(() => {
+            count += 2;
+            percentEl.textContent = count + '%';
+            if (count >= percent) {
+              percentEl.textContent = percent + '%';
+              clearInterval(interval);
+            }
+          }, 30);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  const skills = document.querySelector('.skills-progress');
+  if (skills) observer.observe(skills);
+});
 </script>
 
 </body>

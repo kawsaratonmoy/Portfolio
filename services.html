@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kawsar Portfolio - Services</title>
+  <title>Kawsar - Services</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Floating Header -->
 <header>
   <div class="logo">Kawsar</div>
   <nav>
@@ -21,25 +20,54 @@
 </header>
 
 <main class="section">
-  <!-- Left Column (profile) -->
   <div class="left-col">
     <div class="profile">
       <div class="decor-box"></div>
-      <img src="https://erp.adgully.com/artical_image/48a66db822933ed693d20efd1fef9e02.jpeg" alt="Kawsar" class="profile-img"> <!-- REPLACE WITH YOUR PHOTO -->
+      <img src="https://erp.adgully.com/artical_image/48a66db822933ed693d20efd1fef9e02.jpeg" alt="Kawsar" class="profile-img">
       <h1>Kawsar</h1>
-      <p>Digital Marketer & Landing Page Designer from Savar, Dhaka</p>
-      <div class="skills">
-        <span class="skill-tag">Digital Marketer</span>
-        <span class="skill-tag">Landing Page Designer</span>
-        <span class="skill-tag">Vibe Coder</span>
-        <span class="skill-tag">Freelancer</span>
-        <span class="skill-tag">SEO</span>
-        <span class="skill-tag">Google Ads</span>
+      <p>Digital Marketer & Landing Page Designer<br>Savar, Dhaka</p>
+
+      <div class="skills-progress">
+        <h3 style="text-align:center; margin-bottom:20px; font-size:22px; color:#7cff00;">My Skills</h3>
+
+        <div class="skill-item">
+          <div class="skill-name">Digital Marketing <span class="percent">92%</span></div>
+          <div class="progress-container">
+            <div class="progress-bar" data-percent="92"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">Landing Page Design <span class="percent">88%</span></div>
+          <div class="progress-container">
+            <div class="progress-bar" data-percent="88"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">SEO & Analytics <span class="percent">85%</span></div>
+          <div class="progress-container">
+            <div class="progress-bar" data-percent="85"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">Google Ads <span class="percent">90%</span></div>
+          <div class="progress-container">
+            <div class="progress-bar" data-percent="90"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">UI Basics / Vibe Coding <span class="percent">78%</span></div>
+          <div class="progress-container">
+            <div class="progress-bar" data-percent="78"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Right Column -->
   <div class="right-col">
     <div class="decor-box"></div>
     <div class="category-label">Services</div>
@@ -51,23 +79,22 @@
         <h3>Landing Page Design</h3>
         <div class="meta"><span>$300 – $1200</span><span>4.9 ★ (18)</span></div>
       </div>
-      <!-- Add more cards as needed -->
+      <!-- Add more service cards here -->
     </div>
 
-    <!-- Example expanded view -->
     <details>
       <summary>Landing Page Design – Details</summary>
-      <p>Full high-converting landing pages with copy, design & code.</p>
-      
+      <p>High-converting landing pages with strong copy, modern design and clean code.</p>
+
       <h3>Packages</h3>
-      <details><summary>Bronze</summary><p>Includes: Basic design, 1 revision</p><p>Buy similar on: <a href="https://fiverr.com">Fiverr</a>, <a href="https://upwork.com">Upwork</a>, <a href="https://freelancer.com">Freelancer</a>, <a href="https://peopleperhour.com">PeoplePerHour</a></p><button>Contact Me</button></details>
-      <details><summary>Silver</summary><p>Includes: + SEO, 3 revisions</p><p>Buy similar on: ...</p><button>Contact Me</button></details>
-      <details><summary>Gold</summary><p>Includes: Full strategy, unlimited revisions</p><p>Buy similar on: ...</p><button>Contact Me</button></details>
-      <details><summary>Custom</summary><p>Contact for personalized quote</p><button>Contact Me</button></details>
+      <details><summary>Bronze</summary><p>Basic layout + 1 revision</p><p>Similar on: <a href="#">Fiverr</a> <a href="#">Upwork</a></p><button>Contact</button></details>
+      <details><summary>Silver</summary><p>+ SEO basics, 3 revisions</p><p>Similar on: ...</p><button>Contact</button></details>
+      <details><summary>Gold</summary><p>Full strategy, unlimited revisions, analytics setup</p><p>Similar on: ...</p><button>Contact</button></details>
+      <details><summary>Custom</summary><p>Tailored solution – contact for quote</p><button>Contact Me</button></details>
 
       <h3>Reviews</h3>
-      <div class="card"><p>Great work!</p><strong>John – 5★</strong></div>
-      <!-- Review Form -->
+      <div class="card"><p>Great work, conversions doubled!</p><strong>Client – 5★</strong></div>
+
       <form>
         <input type="file" placeholder="Image (optional)">
         <input type="text" placeholder="Name" required>
@@ -79,6 +106,39 @@
     </details>
   </div>
 </main>
+
+<script>
+// Progress bar animation (same as home)
+document.addEventListener('DOMContentLoaded', () => {
+  const bars = document.querySelectorAll('.progress-bar');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        bars.forEach(bar => {
+          const percent = bar.dataset.percent;
+          bar.style.width = percent + '%';
+
+          const percentEl = bar.closest('.skill-item').querySelector('.percent');
+          let count = 0;
+          const interval = setInterval(() => {
+            count += 2;
+            percentEl.textContent = count + '%';
+            if (count >= percent) {
+              percentEl.textContent = percent + '%';
+              clearInterval(interval);
+            }
+          }, 30);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  const skills = document.querySelector('.skills-progress');
+  if (skills) observer.observe(skills);
+});
+</script>
 
 </body>
 </html>

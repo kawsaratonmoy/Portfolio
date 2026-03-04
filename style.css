@@ -1,218 +1,342 @@
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
-body { background:#f4f4f4; color:#111; line-height:1.6; min-height:100vh; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;           /* safety net - no horizontal scroll anywhere */
+}
+
+body {
+  background: #f4f4f4;
+  color: #111;
+  line-height: 1.6;
+  min-height: 100vh;
+}
 
 /* Floating Header */
 header {
-  position:fixed; top:0; left:0; right:0; z-index:1000;
-  background:#111; color:#fff; padding:15px 40px;
-  display:flex; justify-content:space-between; align-items:center;
-  border-bottom:3px solid #7cff00; box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #111;
+  color: #fff;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #7cff00;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
-header .logo { font-size:24px; font-weight:700; color:#7cff00; }
-nav a { color:#fff; margin-left:30px; text-decoration:none; font-weight:500; }
-nav a:hover, nav a.active { color:#b7ff00; border-bottom:2px solid #b7ff00; }
 
-/* Main layout wrapper - push content below header */
+header .logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #7cff00;
+}
+
+nav a {
+  color: #fff;
+  margin-left: 30px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover,
+nav a.active {
+  color: #b7ff00;
+  border-bottom: 2px solid #b7ff00;
+}
+
+/* Main layout */
 main.section {
-  max-width:1400px;
-  margin:100px auto 80px; /* top margin = header height + breathing room */
-  padding:0 40px;
-  display:flex;
-  gap:40px; /* reduced gap for better balance */
-  position:relative;
+  max-width: 1400px;
+  margin: 100px auto 80px;
+  padding: 0 40px;
+  display: flex;
+  gap: 40px;
+  position: relative;
 }
 
-/* Left fixed sidebar - full viewport height, fixed position */
+/* Fixed left sidebar – NO SCROLLBARS */
 .left-col {
-  position:fixed;
-  top:0;
-  left:0;
-  width:320px;          /* fixed width - feels slimmer than 30% */
-  height:100vh;         /* full viewport height */
-  z-index:900;          /* below header but above content if needed */
-  overflow-y:auto;      /* scroll if profile content overflows (rare) */
-  background:#f4f4f4;   /* match body or make #f9f9f9 for contrast */
-  padding:120px 20px 40px; /* top padding to clear header, bottom breathing */
-  border-right:3px solid #111; /* thick border like cards */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+  z-index: 900;
+  background: #f4f4f4;
+  padding: 120px 20px 40px;
+  overflow: hidden;             /* ← this removes vertical & horizontal scrollbars */
 }
 
-/* Profile inside fixed left */
+/* Extra safety: no overflow on children */
+.left-col * {
+  overflow: hidden;
+}
+
+/* Profile */
 .profile {
-  text-align:center;
-  background:#f9f9f9;
-  border:3px solid #111;
-  border-radius:10px;
-  padding:40px 20px;
-  position:relative;
+  text-align: center;
+  background: #f9f9f9;
+  border: 3px solid #111;
+  border-radius: 10px;
+  padding: 40px 20px;
+  position: relative;
 }
+
 .profile::after {
-  content:"";
-  position:absolute;
-  bottom:-10px;
-  right:-10px;
-  width:100%;
-  height:100%;
-  background:#111;
-  border-radius:10px;
-  z-index:-1;
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  border-radius: 10px;
+  z-index: -1;
 }
+
 .profile-img {
-  width:160px;          /* slightly smaller for slimmer feel */
-  height:160px;
-  border-radius:50%;
-  object-fit:cover;
-  border:4px solid #7cff00;
-  margin-bottom:20px;
-}
-.profile h1 { font-size:36px; margin-bottom:10px; }
-.skills {
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
-  margin:20px 0;
-}
-.skill-tag {
-  background:#111;
-  color:#b7ff00;
-  padding:8px 16px;
-  border-radius:30px;
-  font-size:14px;
-  border:1px solid #7cff00;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #7cff00;
+  margin-bottom: 20px;
 }
 
-/* Decor box - keep but adjust if needed */
+.profile h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
 .decor-box {
-  position:absolute;
-  top:-20px;
-  left:80px;
-  width:220px;
-  height:220px;
-  border:2px solid #b7ff00;
-  z-index:-1;
+  position: absolute;
+  top: -20px;
+  left: 80px;
+  width: 220px;
+  height: 220px;
+  border: 2px solid #b7ff00;
+  z-index: -1;
 }
 
-/* Right content - pushed right of fixed sidebar */
+/* Right column */
 .right-col {
-  margin-left:340px;     /* = left width 320px + gap 20px */
-  flex:1;
-  min-width:0;           /* prevent overflow issues */
+  margin-left: 340px;
+  flex: 1;
+  min-width: 0;
 }
 
-/* Cards & other shared styles remain mostly same */
+/* Cards with fixed hover shadow */
 .cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:40px;
-  margin:60px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin: 60px 0;
 }
+
 .card {
-  background:#f9f9f9;
-  border:3px solid #111;
-  border-radius:10px;
-  padding:25px;
-  position:relative;
-  transition:0.3s;
-  cursor:pointer;
+  background: #f9f9f9;
+  border: 3px solid #111;
+  border-radius: 10px;
+  padding: 25px;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  box-shadow: 10px 10px 0 #111;
+  z-index: 1;
 }
-.card:hover { transform:translate(5px,5px); }
-.card::after {
-  content:"";
-  position:absolute;
-  bottom:-10px;
-  right:-10px;
-  width:100%;
-  height:100%;
-  background:#111;
-  border-radius:10px;
-  z-index:-1;
+
+.card:hover {
+  transform: translate(8px, 8px);
+  box-shadow: 4px 4px 0 #111;
 }
+
 .card img {
-  width:100%;
-  height:180px;
-  object-fit:contain;
-  margin-bottom:15px;
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 15px;
 }
-.card h3 { font-size:24px; margin-bottom:10px; }
+
+.card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
 .card .meta {
-  display:flex;
-  justify-content:space-between;
-  font-size:14px;
-  color:#555;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
 }
 
 /* Category label & headings */
 .category-label {
-  text-align:center;
-  font-size:14px;
-  letter-spacing:6px;
-  color:#7cff00;
-  margin-bottom:10px;
-}
-h2 {
-  text-align:center;
-  font-size:48px;
-  font-weight:500;
-  margin-bottom:60px;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 6px;
+  color: #7cff00;
+  margin-bottom: 10px;
 }
 
-/* Typing */
-.typing {
-  font-size:32px;
-  font-weight:600;
-  color:#111;
-  margin:40px 0;
-  text-align:center;
+h2 {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 60px;
 }
-.typing span { color:#7cff00; }
+
+/* Typing animation */
+.typing {
+  font-size: 32px;
+  font-weight: 600;
+  color: #111;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.typing span {
+  color: #7cff00;
+}
+
+/* Progress bars */
+.skills-progress {
+  margin-top: 30px;
+}
+
+.skill-item {
+  margin-bottom: 20px;
+}
+
+.skill-name {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.percent {
+  color: #7cff00;
+  font-weight: 600;
+}
+
+.progress-container {
+  background: #ddd;
+  border-radius: 10px;
+  height: 12px;
+  overflow: hidden;
+  border: 1px solid #111;
+  position: relative;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #7cff00, #b7ff00);
+  border-radius: 10px;
+  transition: width 1.8s ease-out;
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
 
 /* Details, forms, etc. */
-details { margin:20px 0; }
-summary {
-  font-size:20px;
-  font-weight:600;
-  cursor:pointer;
-  padding:15px;
-  background:#111;
-  color:#fff;
-  border-radius:8px;
+details {
+  margin: 20px 0;
 }
-form { display:grid; gap:15px; }
-input, textarea, select {
-  padding:12px;
-  border:2px solid #111;
-  border-radius:8px;
-  font-size:16px;
-}
-button {
-  background:#111;
-  color:#b7ff00;
-  border:none;
-  padding:15px;
-  font-size:18px;
-  border-radius:8px;
-  cursor:pointer;
-}
-button:hover { background:#7cff00; color:#111; }
 
-/* Mobile - stack everything, disable fixed sidebar */
-@media (max-width:900px) {
+summary {
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 15px;
+  background: #111;
+  color: #fff;
+  border-radius: 8px;
+}
+
+form {
+  display: grid;
+  gap: 15px;
+}
+
+input, textarea, select {
+  padding: 12px;
+  border: 2px solid #111;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  background: #111;
+  color: #b7ff00;
+  border: none;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #7cff00;
+  color: #111;
+}
+
+.faq details summary {
+  background: #f9f9f9;
+  color: #111;
+  border: 2px solid #111;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
   .left-col {
-    position:static;      /* no fixed on mobile */
-    width:100%;
-    height:auto;
-    padding:100px 20px 40px; /* top to clear header */
-    border-right:none;
-    border-bottom:3px solid #111;
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 100px 20px 40px;
+    border-bottom: 3px solid #111;
   }
+
   .right-col {
-    margin-left:0;
+    margin-left: 0;
   }
+
   main.section {
-    flex-direction:column;
-    gap:0;
-    padding:0 20px;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 20px;
   }
-  header { padding:15px 20px; }
-  nav a { margin-left:15px; font-size:14px; }
+
+  header {
+    padding: 15px 20px;
+  }
+
+  nav a {
+    margin-left: 15px;
+    font-size: 14px;
+  }
 }
