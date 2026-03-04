@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kawsar Portfolio - Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background:#111; color:#fff; padding:100px 40px;">
+
+<div id="login" style="max-width:500px; margin:auto; background:#f9f9f9; color:#111; padding:50px; border-radius:10px; border:3px solid #7cff00;">
+  <h2>Admin Login</h2>
+  <form id="adminLogin">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+  <p id="error" style="color:red;"></p>
+</div>
+
+<div id="dashboard" style="display:none; max-width:1200px; margin:auto;">
+  <h1>Admin Dashboard</h1>
+  <button onclick="logout()">Logout</button>
+
+  <h2>Manage Blogs</h2>
+  <button>Add New Blog</button>
+  <!-- Placeholder list - load dynamically with JS/Firestore -->
+  <div class="cards">
+    <div class="card"><h3>Blog 1</h3><button>Edit</button><button>Delete</button></div>
+  </div>
+
+  <h2>Manage Case Studies</h2>
+  <button>Add New Case Study</button>
+  <div class="cards">
+    <div class="card"><h3>Case 1</h3><button>Edit</button><button>Delete</button></div>
+  </div>
+
+  <!-- Add forms for add/edit here if needed -->
+</div>
+
+<script type="module">
+// Uncomment and add your Firebase config
+/*
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+// import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  // apiKey: "YOUR_API_KEY",
+  // authDomain: "YOUR_PROJECT.firebaseapp.com",
+  // projectId: "YOUR_PROJECT_ID",
+  // storageBucket: "YOUR_PROJECT.appspot.com",
+  // messagingSenderId: "YOUR_SENDER_ID",
+  // appId: "YOUR_APP_ID"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+// const db = getFirestore(app);
+
+onAuthStateChanged(auth, user => {
+  if (user) {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    // Load data from Firestore here
+  } else {
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('login').style.display = 'block';
+  }
+});
+
+document.getElementById('adminLogin').addEventListener('submit', e => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const pass = document.getElementById('password').value;
+  signInWithEmailAndPassword(auth, email, pass)
+    .catch(err => document.getElementById('error').textContent = err.message);
+});
+
+function logout() { signOut(auth); }
+*/
+</script>
+
+</body>
+</html>

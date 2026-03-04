@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kawsar Portfolio - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Floating Header -->
+<header>
+  <div class="logo">Kawsar</div>
+  <nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+</header>
+
+<main class="section">
+  <!-- Left Column (profile) -->
+  <div class="left-col">
+    <div class="profile">
+      <div class="decor-box"></div>
+      <img src="https://erp.adgully.com/artical_image/48a66db822933ed693d20efd1fef9e02.jpeg" alt="Kawsar" class="profile-img"> <!-- REPLACE WITH YOUR PHOTO -->
+      <h1>Kawsar</h1>
+      <p>Digital Marketer & Landing Page Designer from Savar, Dhaka</p>
+      <div class="skills">
+        <span class="skill-tag">Digital Marketer</span>
+        <span class="skill-tag">Landing Page Designer</span>
+        <span class="skill-tag">Vibe Coder</span>
+        <span class="skill-tag">Freelancer</span>
+        <span class="skill-tag">SEO</span>
+        <span class="skill-tag">Google Ads</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  <div class="right-col">
+    <div class="decor-box"></div>
+    <div class="category-label">Hey there</div>
+    <h2>Welcome</h2>
+
+    <div class="typing">I am a <span></span></div>
+
+    <p style="font-size:20px; text-align:center; max-width:800px; margin:40px auto;">
+      Based in Savar, Dhaka – turning ideas into high-converting landing pages, smart digital campaigns, and vibes that stick. 
+      I help brands grow with clean design, strategic marketing, and a touch of creativity.
+    </p>
+
+    <h2 style="text-align:center; margin:80px 0 40px;">How I Work</h2>
+    <div class="cards">
+      <div class="card"><h3>Discovery</h3><p>Understand your goals & audience</p></div>
+      <div class="card"><h3>Strategy</h3><p>Plan campaigns & structure</p></div>
+      <div class="card"><h3>Design & Build</h3><p>Create & code magic</p></div>
+      <div class="card"><h3>Launch & Optimize</h3><p>Go live & track results</p></div>
+    </div>
+
+    <h2 style="text-align:center; margin:80px 0 40px;">Latest Testimonials</h2>
+    <div class="cards">
+      <div class="card"><p>"Amazing landing page – conversions up 3x!"</p><p><strong>Client A</strong></p></div>
+      <div class="card"><p>"Kawsar nailed the vibe perfectly."</p><p><strong>Client B</strong></p></div>
+      <div class="card"><p>"Professional and fast delivery."</p><p><strong>Client C</strong></p></div>
+    </div>
+
+    <h2 style="text-align:center; margin:80px 0 40px;">Case Studies</h2>
+    <div class="cards">
+      <div class="card"><img src="https://via.placeholder.com/300x180?text=Case+1" alt=""><h3>E-commerce Landing</h3><p>Boosted sales 250%</p></div>
+      <div class="card"><img src="https://via.placeholder.com/300x180?text=Case+2" alt=""><h3>Local Brand Campaign</h3><p>50k+ reach</p></div>
+      <div class="card"><img src="https://via.placeholder.com/300x180?text=Case+3" alt=""><h3>Personal Portfolio</h3><p>Modern redesign</p></div>
+      <div class="card" style="display:flex;align-items:center;justify-content:center;"><h3>See All Case Studies →</h3></div>
+    </div>
+
+    <h2 style="text-align:center; margin:80px 0 40px;">Latest Blogs</h2>
+    <div class="cards">
+      <div class="card"><img src="https://via.placeholder.com/300x180?text=Blog+1" alt=""><h3>2026 Marketing Trends</h3><p>March 1, 2026</p></div>
+      <div class="card"><img src="https://via.placeholder.com/300x180?text=Blog+2" alt=""><h3>Landing Page Secrets</h3><p>Feb 15, 2026</p></div>
+      <div class="card"><img src="https://via.placeholder.com/300x180?text=Blog+3" alt=""><h3>Vibe Coding 101</h3><p>Jan 20, 2026</p></div>
+      <div class="card" style="display:flex;align-items:center;justify-content:center;"><h3>See All Blogs →</h3></div>
+    </div>
+
+    <h2 style="text-align:center; margin:80px 0 40px;">Certifications</h2>
+    <div class="cards">
+      <div class="card"><h3>Google Digital Marketing</h3><p>2025</p></div>
+      <div class="card"><h3>HubSpot Inbound</h3><p>2024</p></div>
+      <div class="card"><h3>Meta Blueprint</h3><p>2025</p></div>
+    </div>
+  </div>
+</main>
+
+<script>
+// Typing animation
+const phrases = ["Digital marketer", "Landing page designer", "Vibe coder", "Freelancer"];
+let i = 0, j = 0, isDeleting = false;
+const typingEl = document.querySelector('.typing span');
+
+function type() {
+  let current = phrases[i];
+  if (isDeleting) {
+    typingEl.textContent = current.substring(0, j--);
+    if (j < 0) { isDeleting = false; i = (i + 1) % phrases.length; j = 0; }
+  } else {
+    typingEl.textContent = current.substring(0, j++);
+    if (j > current.length) { isDeleting = true; setTimeout(type, 1500); return; }
+  }
+  setTimeout(type, isDeleting ? 80 : 120);
+}
+type();
+</script>
+
+</body>
+</html>
